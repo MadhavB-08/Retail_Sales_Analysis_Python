@@ -103,9 +103,6 @@ Retail_Sales_Analysis_Python/
 │   ├── Cleaned_sales_by_top_10_products.png
 │   └── ... (raw chart variations)
 │
-├── Dataset_2.csv                         # Raw retail sales dataset (300k+ rows)
-├── retail_data_cleaned.csv               # Preprocessed & standardized dataset
-├── retail_sales_cleaned.csv              # Cleaned dataset tailored for sales analysis
 ├── python_analysis.py                    # Main script: cleaning, EDA, aggregation, charts
 └── README.md                             # Project documentation
 ```
