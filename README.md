@@ -119,7 +119,8 @@ Ensure you have **Python 3.8+** installed on your system.
 
 ### 2. Clone / Open the Workspace
 ```bash
-https://github.com/MadhavB-08/Retail_Sales_Analysis_Python.git
+git clone https://github.com/MadhavB-08/Retail_Sales_Analysis_Python.git
+cd Retail_Sales_Analysis_Python
 ```
 
 ### 3. Install Required Libraries
