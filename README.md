@@ -4,19 +4,6 @@ An end-to-end data analytics and exploratory data analysis (EDA) project analyzi
 
 ---
 
-## 📑 Table of Contents
-- [Project Overview](#-project-overview)
-- [Key Business Insights](#-key-business-insights)
-- [Dataset Architecture](#-dataset-architecture)
-- [Data Cleaning & Pipeline](#-data-cleaning--pipeline)
-- [Visualizations & Charts](#-visualizations--charts)
-- [Project Structure](#-project-structure)
-- [Installation & Setup](#-installation--setup)
-- [Usage](#-usage)
-- [Future Enhancements](#-future-enhancements)
-
----
-
 ## 🔍 Project Overview
 
 Retail businesses generate high-volume transaction data across multiple global territories, distribution channels, and product categories. Uncovering customer purchasing patterns, seasonal sales velocity, payment preferences, and shipping channel usage is critical for optimizing revenue and inventory management.
@@ -132,8 +119,7 @@ Ensure you have **Python 3.8+** installed on your system.
 
 ### 2. Clone / Open the Workspace
 ```bash
-git clone https://github.com/your-username/Retail_Sales_Analysis_Python.git
-cd Retail_Sales_Analysis_Python
+https://github.com/MadhavB-08/Retail_Sales_Analysis_Python.git
 ```
 
 ### 3. Install Required Libraries
