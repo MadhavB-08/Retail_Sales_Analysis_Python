@@ -147,5 +147,7 @@ python python_analysis.py
 
 ---
 
+## 🔒 Data Confidentiality & Disclaimer
 
+The dataset utilized in this project consists of confidential retail transaction data. In compliance with privacy standards and non-disclosure obligations, the raw dataset and processed CSV files cannot be uploaded or shared in this repository. All code, schemas, and analytical outputs are provided exclusively for methodology demonstration and portfolio review.
 
