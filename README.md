@@ -96,7 +96,6 @@ Visualizations are saved with high resolution (300 DPI) in the `Charts/` directo
 | **Sales by Gender** | `Charts/Cleaned_sales_by_gender.png` |
 | **Top 10 Products by Sales** | `Charts/Cleaned_sales_by_top_10_products.png` |
 | **Top 10 Customer Spending** | `Charts/Cleaned_sales_by_customer_spending.png` |
-| **Monthly Sales Breakdown** | `Charts/Cleaned_monthly_sales.png` |
 | **Monthly Sales Trend** | `Charts/Cleaned_monthly_sales_trend.png` |
 
 ---
@@ -107,7 +106,6 @@ Visualizations are saved with high resolution (300 DPI) in the `Charts/` directo
 Retail_Sales_Analysis_Python/
 │
 ├── Charts/                               # Generated high-resolution plots
-│   ├── Cleaned_monthly_sales.png
 │   ├── Cleaned_monthly_sales_trend.png
 │   ├── Cleaned_sales_by_country.png
 │   ├── Cleaned_sales_by_customer_spending.png
@@ -162,14 +160,5 @@ python python_analysis.py
 
 ---
 
-## 🔮 Future Enhancements
 
-- [ ] **Interactive Dashboard**: Build an interactive web dashboard using **Streamlit** or **Dash**.
-- [ ] **Predictive Sales Forecasting**: Train time-series models (ARIMA, Prophet, or XGBoost) to forecast future quarterly revenue.
-- [ ] **Customer Segmentation (RFM)**: Implement Recency, Frequency, and Monetary (RFM) clustering with K-Means to identify high-value customer segments.
-- [ ] **Basket Analysis**: Apply the Apriori / FP-Growth algorithm for cross-selling and product recommendation insights.
 
----
-
-## 👤 Author
-- **Madhav** - *Data Analysis & Python Implementation*
