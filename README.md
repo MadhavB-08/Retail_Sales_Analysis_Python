@@ -1,110 +1,179 @@
-# 📊 Retail Sales Analysis with Python
+# 📊 Retail Sales Analysis & Data Processing Pipeline with Python
 
-An end-to-end data analytics and exploratory data analysis (EDA) project analyzing over **300,000+ retail sales transactions**. This project focuses on end-to-end data processing: data ingestion, data hygiene and cleaning, missing value imputation, transaction-level aggregation, and publication-ready data visualization.
+An end-to-end data analytics and exploratory data analysis (EDA) pipeline analyzing over **300,000+ retail sales transactions**. Built entirely with Python, Pandas, and Matplotlib, this project implements a rigorous data auditing and cleaning framework, validates transactional and financial integrity, extracts core commercial KPIs, and produces 10 publication-quality analytical visualizations.
+
+---
+
+> [!IMPORTANT]
+> **Data Confidentiality Notice**: The datasets used in this project (`row_dataset.csv`, `retail_data_cleaned.csv`, and `retail_sales_cleaned.csv`) contain proprietary and confidential business information. In strict compliance with data privacy policies and non-disclosure obligations, all raw and processed CSV data files are excluded from this public repository via `.gitignore`. The complete codebase, analytical workflows, data schemas, and visualization figures are fully documented below for demonstration and portfolio review.
 
 ---
 
 ## 🔍 Project Overview
 
-Retail businesses generate high-volume transaction data across multiple global territories, distribution channels, and product categories. Uncovering customer purchasing patterns, seasonal sales velocity, payment preferences, and shipping channel usage is critical for optimizing revenue and inventory management.
+Modern omnichannel retail operations generate massive transactional datasets spanning multiple geographic regions, distribution channels, and customer segments. Raw transactional logs frequently suffer from data hygiene issues such as mixed date formats, whitespace anomalies, missing values, corrupted header artifacts, and transactional discrepancies.
 
-This project delivers:
-- **Comprehensive Data Audit**: Identification of missing values, anomalies, and duplicate records across 30 attributes.
-- **Robust Cleaning Pipeline**: Systematic whitespace stripping, imputation of missing monetary figures via calculated relationships (`Total_Amount = Total_Purchases × Amount`), and datetime normalization.
-- **Multi-Dimensional Business Analysis**: Sales breakdown across countries, product lines, payment gateways, demographics, customer segments, and monthly timeline trends.
-- **Publication-Ready Visualizations**: High-DPI bar charts, horizontal rankings, and formatted labels stored in the `Charts/` directory.
+This project delivers a complete, reproducible data pipeline implemented in [`python_analysis.py`](python_analysis.py):
+- **Deep Data Quality Audit**: Discovers missing value distributions, calculates null percentages, identifies duplicate transaction IDs, and validates financial integrity (`Total_Amount = Amount × Total_Purchases`).
+- **Comprehensive Preprocessing Engine**: Automates string stripping, regex whitespace removal, categorical imputation (`"Unknown"` across 13 columns), numeric coercion, and date normalization.
+- **Header Artifact & Outlier Cleansing**: Automatically filters out repeated header entries and corrupted strings in product metadata.
+- **Automated Dataset Export**: Generates both a master cleaned dataset (`retail_data_cleaned.csv`) and a targeted sales analysis dataset (`retail_sales_cleaned.csv`).
+- **Executive KPI Reporting**: Aggregates enterprise-level commercial metrics across revenue, order velocity, basket size, and customer volume.
+- **10 High-Resolution Visualizations**: Exports 300 DPI figures to the `Charts/` directory covering customer demographics, fulfillment, brands, products, and temporal trends.
 
 ---
 
-## 📈 Key Business Insights
+## 📈 Key Business Insights & KPIs
 
-Based on analysis of **301,656+ validated sales records**:
+Based on the verified analysis of **301,656 validated sales records** across global operations:
 
-| Metric | Insight / Top Performer | Total Sales Volume |
+| Metric | Business Indicator / Top Performer | Total Volume / Value |
 | :--- | :--- | :--- |
-| **Top Country** | 🇺🇸 **United States (USA)** | **$129,722,154** |
-| **Leading Product Category** | 📱 **Electronics** | **$97,398,320** |
-| **Secondary Product Category** | 🛒 **Grocery** | **$91,076,810** |
-| **Preferred Payment Method** | 💳 **Credit Card** | **$123,255,207** |
-| **Top Shipping Method** | 🚀 **Same-Day Delivery** | **$142,239,400** |
-| **Highest Sales Month** | 📅 **March** | **$21,597,056** |
-| **Lowest Sales Month** | ❄️ **February** | **$19,702,425** |
-| **Top-Selling Single Product** | 💧 **Bottled Water** | **$3,432,025** |
-| **Demographic Breakdown** | 👨 **Male** vs 👩 **Female** | **$256.18M** vs **$155.95M** |
+| **Total Net Revenue** | 💰 Overall Sales Across All Channels | **$412,558,519.22** |
+| **Total Unique Transactions** | 🧾 Distinct Completed Orders | **294,126** |
+| **Total Unique Customers** | 👥 Active Customer Base | **86,748** |
+| **Average Transaction Value (AOV)** | 🏷️ Mean Basket Size | **$1,402.66** |
+| **Top Country by Revenue** | 🇺🇸 United States (USA) | **$129,722,153.93** |
+| **Top Product Category** | 📱 Electronics | **$97,398,318.23** |
+| **Top-Selling Brand** | 🥤 Pepsi | **$41,354,053.36** |
+| **Top-Selling Single Product** | 💧 Bottled Water | **$3,432,024.73** |
+| **Dominant Customer Segment** | 👥 Regular | **$199,963,135.13** |
+| **Preferred Payment Gateway** | 💳 Credit Card | **$123,255,207.16** |
+| **Primary Shipping Method** | 🚀 Same-Day Delivery | **$142,237,872.48** |
+| **Top Order Status** | 📦 Delivered | **$178,115,886.82** |
 
 ---
 
-## 🗃️ Dataset Architecture
+## 🗃️ Dataset Architecture & Schema
 
-The project works with retail transaction records containing 30 features across demographics, product data, and order metrics:
+The underlying transactional dataset captures 30 distinct attributes across customer profiles, geographic dimensions, transactional financials, and product logistics:
 
-```
+```text
 Transaction_ID, Customer_ID, Name, Email, Phone, Address, City, State, Zipcode, 
 Country, Age, Gender, Income, Customer_Segment, Date, Year, Month, Time, 
 Total_Purchases, Amount, Total_Amount, Product_Category, Product_Brand, 
 Product_Type, Feedback, Shipping_Method, Payment_Method, Order_Status, Ratings, products
 ```
 
-### Core Data Categories:
-- **Customer Profiles**: `Customer_ID`, `Age`, `Gender`, `Income`, `Customer_Segment`
-- **Geographic Data**: `Country`, `State`, `City`, `Zipcode`
-- **Order & Financials**: `Total_Purchases`, `Amount` (Unit Price), `Total_Amount`, `Payment_Method`
-- **Product Information**: `Product_Category`, `Product_Brand`, `Product_Type`, `products`
-- **Logistics & Service**: `Shipping_Method`, `Order_Status`, `Feedback`, `Ratings`, `Date`
+### Feature Classification:
+- **Customer Profiles**: `Customer_ID`, `Name`, `Email`, `Phone`, `Age`, `Gender`, `Income`, `Customer_Segment`
+- **Geographic Information**: `Address`, `City`, `State`, `Zipcode`, `Country`
+- **Order & Financial Metrics**: `Transaction_ID`, `Date`, `Year`, `Month`, `Time`, `Total_Purchases` (Quantity), `Amount` (Unit Price), `Total_Amount` (Gross Sales)
+- **Product Taxonomy**: `Product_Category`, `Product_Brand`, `Product_Type`, `products`
+- **Fulfillment & Customer Experience**: `Shipping_Method`, `Payment_Method`, `Order_Status`, `Feedback`, `Ratings`
 
 ---
 
-## 🧹 Data Cleaning & Pipeline
+## 🛠️ Pipeline Architecture (`python_analysis.py`)
 
-The pipeline in [`python_analysis.py`](python_analysis.py) standardizes and fixes dirty raw data:
+The end-to-end Python script executes in 6 systematic stages:
 
-1. **Deduplication**: Removes exact duplicates from the raw 302,010-row dataset.
-2. **String Standardization**: Strips leading/trailing whitespaces and replaces empty string literals with explicit `'Unknown'` categories for categorical fields (`Country`, `Product_Category`, `Gender`, `Payment_Method`, `Shipping_Method`).
-3. **Data Imputation & Integrity**:
-   - Validates that `Total_Amount = Total_Purchases * Amount`.
-   - Populates missing numerical indicators seamlessly using verifiable transaction relationships.
-4. **Date Standardization**: Parses varied date formats into unified pandas `datetime64` representations for monthly aggregation and trend reporting.
-5. **Output Generation**:
-   - `retail_data_cleaned.csv`: Cleaned dataset across all attributes.
-   - `retail_sales_cleaned.csv`: Validated sales-specific dataset ready for immediate BI and machine learning tasks.
+```
+┌─────────────────────────┐
+│   1. Data Ingestion     │ ──> Load row_dataset.csv, profile shape, datatypes & info
+└───────────┬─────────────┘
+            │
+┌───────────▼─────────────┐
+│ 2. Audit & Verification │ ──> Regex whitespace audit, null %, duplicate Transaction_ID,
+│                         │     and financial validation (Total_Amount == Amount * Total_Purchases)
+└───────────┬─────────────┘
+            │
+┌───────────▼─────────────┐
+│  3. Cleaning & Cleansing│ ──> Drop duplicate rows, strip string whitespace, fill categorical
+│                         │     missing with 'Unknown', coerce numerics, parse mixed dates
+└───────────┬─────────────┘
+            │
+┌───────────▼─────────────┐
+│  4. Dataset Separation  │ ──> Filter out corrupted header artifact rows ("products", "product_type")
+│       & Persistence     │     Export retail_data_cleaned.csv and retail_sales_cleaned.csv
+└───────────┬─────────────┘
+            │
+┌───────────▼─────────────┐
+│  5. Business KPI Engine │ ──> Calculate total revenue, transaction counts, AOV, top performers
+└───────────┬─────────────┘
+            │
+┌───────────▼─────────────┐
+│ 6. High-Res Visualization│ ──> Generate & export 10 charts (300 DPI) to Charts/ directory
+└─────────────────────────┘
+```
+
+### Step-by-Step Breakdown:
+
+1. **Data Ingestion & Profiling**:
+   - Reads raw transaction data into a pandas DataFrame (`row_dataset.csv`).
+   - Inspects dataset dimensions, column names, memory footprint, and initial records.
+
+2. **Data Hygiene & Consistency Audit**:
+   - Converts blank and whitespace-only strings into `pd.NA` using regular expressions (`r'^\s*$'`).
+   - Identifies total missing records and ranks columns by missing percentage.
+   - Evaluates row-level duplicate records and transaction ID collision frequency.
+   - **Financial Formula Consistency**: Verifies transaction integrity using numeric checks:
+     $$\text{Consistency} = |\text{Amount} \times \text{Total\_Purchases} - \text{Total\_Amount}| < 0.01$$
+
+3. **Data Transformation & Imputation**:
+   - Deduplication: Removes redundant records via `drop_duplicates()`.
+   - String Sanitization: Trims leading and trailing spaces from all object/string columns.
+   - Categorical Imputation: Systematically fills missing values in 13 categorical fields (`Country`, `State`, `City`, `Gender`, `Customer_Segment`, `Product_Category`, `Product_Brand`, `Product_Type`, `Feedback`, `Shipping_Method`, `Payment_Method`, `Order_Status`, `products`) with `"Unknown"`.
+   - Numeric Coercion: Safely casts numeric fields (`Age`, `Income`, `Total_Purchases`, `Amount`, `Total_Amount`, `Ratings`) using `errors="coerce"`.
+   - Datetime Standardization: Parses varied date strings into unified `datetime64` representations using `format="mixed"`, and engineers `Year` and `Month` features.
+
+4. **Header Artifact Cleaning & Dataset Export**:
+   - Removes corrupted rows where header strings were inadvertently ingested as values (e.g. `products == "products"` or `Product_Type == "product_type"`).
+   - Generates two CSV files:
+     - `retail_data_cleaned.csv`: Master preprocessed dataset.
+     - `retail_sales_cleaned.csv`: Cleaned dataset containing records with validated `Total_Amount`.
+
+5. **Automated KPI Aggregations**:
+   - Computes aggregated sales metrics across product category, country, payment method, shipping method, and demographics.
+
+6. **Visualization Suite**:
+   - Automatically builds and saves 10 publication-ready figures with 300 DPI resolution, clean labeling, unscientific notation (`style="plain"`), and tight bounding boxes into `Charts/`.
 
 ---
 
-## 📊 Visualizations & Charts
+## 📊 Visualizations & Output Catalog
 
-Visualizations are saved with high resolution (300 DPI) in the `Charts/` directory:
+The script produces 10 high-resolution charts saved directly to the [`Charts/`](Charts/) folder:
 
-| Visualized Metric | File Path |
-| :--- | :--- |
-| **Sales by Country** | `Charts/Cleaned_sales_by_country.png` |
-| **Sales by Product Category** | `Charts/Cleaned_sales_by_product_category.png` |
-| **Sales by Payment Method** | `Charts/Cleaned_sales_by_payment_method.png` |
-| **Sales by Shipping Method** | `Charts/Cleaned_sales_by_shipping_method.png` |
-| **Sales by Gender** | `Charts/Cleaned_sales_by_gender.png` |
-| **Top 10 Products by Sales** | `Charts/Cleaned_sales_by_top_10_products.png` |
-| **Top 10 Customer Spending** | `Charts/Cleaned_sales_by_customer_spending.png` |
-| **Monthly Sales Trend** | `Charts/Cleaned_monthly_sales_trend.png` |
+| Chart Filename | Chart Type | Analytical Focus |
+| :--- | :--- | :--- |
+| [`sales_by_product_category.png`](Charts/sales_by_product_category.png) | Vertical Bar Chart | Revenue distribution across major product categories (Electronics, Grocery, Clothing, etc.) |
+| [`top_10_countries_by_sales.png`](Charts/top_10_countries_by_sales.png) | Horizontal Bar Chart | Top 10 revenue-generating countries globally |
+| [`monthly_sales_trend.png`](Charts/monthly_sales_trend.png) | Line Plot with Markers | Longitudinal monthly revenue trajectory across the calendar year |
+| [`sales_by_payment_method.png`](Charts/sales_by_payment_method.png) | Vertical Bar Chart | Revenue share comparison by payment gateway (Credit Card, Debit Card, PayPal, Cash) |
+| [`sales_by_shipping_method.png`](Charts/sales_by_shipping_method.png) | Vertical Bar Chart | Logistics distribution by shipping tier (Same-Day, Express, Standard) |
+| [`sales_by_gender.png`](Charts/sales_by_gender.png) | Vertical Bar Chart | Demographic spending patterns segmented by gender |
+| [`top_10_products_by_sales.png`](Charts/top_10_products_by_sales.png) | Horizontal Bar Chart | Top 10 individual products by cumulative sales volume |
+| [`sales_by_customer_segment.png`](Charts/sales_by_customer_segment.png) | Vertical Bar Chart | Revenue generated by customer tier (Regular, Premium, VIP) |
+| [`top_10_brands_by_sales.png`](Charts/top_10_brands_by_sales.png) | Horizontal Bar Chart | Top 10 leading manufacturing brands by gross revenue |
+| [`sales_by_order_status.png`](Charts/sales_by_order_status.png) | Vertical Bar Chart | Transaction value distribution across fulfillment statuses (Delivered, Shipped, Processing, Cancelled) |
 
 ---
 
-## 📁 Project Structure
+## 📁 Repository Structure
 
 ```text
 Retail_Sales_Analysis_Python/
 │
-├── Charts/                               # Generated high-resolution plots
-│   ├── Cleaned_monthly_sales_trend.png
-│   ├── Cleaned_sales_by_country.png
-│   ├── Cleaned_sales_by_customer_spending.png
-│   ├── Cleaned_sales_by_gender.png
-│   ├── Cleaned_sales_by_payment_method.png
-│   ├── Cleaned_sales_by_product_category.png
-│   ├── Cleaned_sales_by_shipping_method.png
-│   ├── Cleaned_sales_by_top_10_products.png
-│   └── ... (raw chart variations)
+├── Charts/                               # Generated 300 DPI visualization figures
+│   ├── monthly_sales_trend.png           # Monthly revenue velocity
+│   ├── sales_by_customer_segment.png     # Customer tier sales comparison
+│   ├── sales_by_gender.png               # Gender-based sales distribution
+│   ├── sales_by_order_status.png         # Fulfillment status breakdown
+│   ├── sales_by_payment_method.png       # Payment gateway usage
+│   ├── sales_by_product_category.png     # Category revenue breakdown
+│   ├── sales_by_shipping_method.png      # Logistics channel distribution
+│   ├── top_10_brands_by_sales.png        # Brand leaderboard
+│   ├── top_10_countries_by_sales.png     # Geographic sales leaderboard
+│   └── top_10_products_by_sales.png      # Individual product leaderboard
 │
-├── python_analysis.py                    # Main script: cleaning, EDA, aggregation, charts
-└── README.md                             # Project documentation
+├── .gitignore                            # Excludes *.csv and temporary runtime files
+├── python_analysis.py                    # Complete end-to-end Python pipeline
+├── README.md                             # Project documentation
+│
+├── [EXCLUDED] row_dataset.csv            # Raw retail dataset (omitted due to confidentiality)
+├── [EXCLUDED] retail_data_cleaned.csv    # Cleaned master dataset (omitted due to confidentiality)
+└── [EXCLUDED] retail_sales_cleaned.csv   # Cleaned sales dataset (omitted due to confidentiality)
 ```
 
 ---
@@ -112,35 +181,44 @@ Retail_Sales_Analysis_Python/
 ## ⚙️ Installation & Setup
 
 ### 1. Prerequisites
-Ensure you have **Python 3.8+** installed on your system.
+Ensure you have **Python 3.8+** installed. Check your version with:
+```bash
+python --version
+```
 
-### 2. Clone / Open the Workspace
+### 2. Clone the Repository
 ```bash
 git clone https://github.com/MadhavB-08/Retail_Sales_Analysis_Python.git
 cd Retail_Sales_Analysis_Python
 ```
 
-### 3. Install Required Libraries
+### 3. Install Dependencies
+Install the required scientific Python libraries using `pip`:
 ```bash
 pip install pandas matplotlib numpy
 ```
 
 ---
 
-## 🚀 Usage
+## 🚀 Execution & Usage
 
-Execute the complete data processing, statistical reporting, and visual generation workflow by running:
+To run the complete data audit, preprocessing pipeline, KPI extraction, and chart generation workflow:
 
 ```bash
 python python_analysis.py
 ```
 
-### Script Execution Highlights:
-- Displays summary dimensions and initial missing-value distribution.
-- Computes aggregated sales metrics across product category, country, payment method, shipping method, and demographics.
-- Performs data cleaning and exports `retail_data_cleaned.csv` and `retail_sales_cleaned.csv`.
-- Generates and saves visualization figures directly into the `Charts/` directory.
-- Prints executive summary KPI findings to the console.
+### Execution Output:
+1. **Console Logging**: Outputs raw data dimensions, missing value reports, duplicate transaction frequency, financial consistency results, and executive business KPIs.
+2. **Dataset Exports**: Generates `retail_data_cleaned.csv` and `retail_sales_cleaned.csv` in the project root.
+3. **Chart Exports**: Saves all 10 high-resolution analytical plots directly into the `Charts/` directory.
+
+> [!NOTE]
+> Since the original dataset is confidential and excluded from this repository via `.gitignore`, executing the pipeline locally requires placing your own compatible dataset structured according to the documented schema (named `row_dataset.csv`) in the root directory.
 
 ---
+
+## 🔒 Data Confidentiality & Compliance Disclaimer
+
+The transaction data analyzed in this project originates from proprietary business operations and is strictly confidential. In compliance with enterprise non-disclosure agreements (NDAs) and international data privacy regulations, the dataset cannot be uploaded, published, or distributed in this repository. All code implementations, data processing methodologies, schema definitions, and statistical visualizations are presented exclusively for technical evaluation and portfolio demonstration.
 
