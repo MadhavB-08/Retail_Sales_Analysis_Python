@@ -4,9 +4,6 @@ An end-to-end data analytics and exploratory data analysis (EDA) pipeline analyz
 
 ---
 
-> [!IMPORTANT]
-> **Data Confidentiality Notice**: The datasets used in this project (`row_dataset.csv`, `retail_data_cleaned.csv`, and `retail_sales_cleaned.csv`) contain proprietary and confidential business information. In strict compliance with data privacy policies and non-disclosure obligations, all raw and processed CSV data files are excluded from this public repository via `.gitignore`. The complete codebase, analytical workflows, data schemas, and visualization figures are fully documented below for demonstration and portfolio review.
-
 ---
 
 ## 🔍 Project Overview
@@ -221,4 +218,3 @@ python python_analysis.py
 ## 🔒 Data Confidentiality & Compliance Disclaimer
 
 The transaction data analyzed in this project originates from proprietary business operations and is strictly confidential. In compliance with enterprise non-disclosure agreements (NDAs) and international data privacy regulations, the dataset cannot be uploaded, published, or distributed in this repository. All code implementations, data processing methodologies, schema definitions, and statistical visualizations are presented exclusively for technical evaluation and portfolio demonstration.
-
